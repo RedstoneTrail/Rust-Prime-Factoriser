@@ -3,28 +3,25 @@ use std::io;
 use std::io::Write;
 
 fn main() {
-    print!("\n\nPlease enter a number to prime factorise.\n\n> ");
+    // print!("\n\nPlease enter a number to prime factorise.\n\n> ");
     std::io::stdout().flush().unwrap();
     let mut input = String::from("");
     io::stdin().read_line(&mut input).expect("end of playtest.");
 
-    let number_to_factorise: BigInt = input
-        .trim()
-        .parse()
-        .expect("That input is not valid. The program will now exit.");
+    let number_to_factorise: BigInt = input.trim().parse().expect("invalid input");
 
     if number_to_factorise == BigInt::from(1) {
-        println!("1 does not have any prime factors");
+        println!("");
     } else {
         let result = prime_factorise(&number_to_factorise);
 
         println!(
-            "\n\nThe Prime Factor(s) of {number_to_factorise} are:\n\n{}",
+            "{}",
             result
                 .into_iter()
                 .map(|item| item.to_string())
                 .collect::<Vec<_>>()
-                .join(", ")
+                .join(",")
         );
     };
 }
